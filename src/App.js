@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import WeatherComponent from './components/WeatherComponent';
 
-function App() {
+const App = () => {
+  const [country, setCountry] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Call the API or perform any other logic here using the "country" state value
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={country}
+          onChange={(e) => setCountry(e.target.value)}
+          placeholder="Enter a country"
+        />
+        <button type="submit">Get Weather</button>
+      </form>
+      <WeatherComponent country={country} />
     </div>
   );
-}
+};
 
 export default App;
